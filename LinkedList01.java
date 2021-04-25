@@ -41,25 +41,7 @@ public class LinkedList01 {
             System.out.println("Otro 1, No 2");
             opcion = Scan.nextInt();
         }while(opcion>0 && opcion<2);
-
-        /*nextNodo = new nodos();
-        System.out.println("Introduzca el dato del nodo");
-        data = Scan.nextInt();
-        nextNodo.data = data;
-        nextNodo.link = null;
-
-        NextNodo2 = nextNodo;
-        do{
-           head = new nodos();
-            System.out.println("Introduzca el dato del nodo");
-            data = Scan.nextInt();
-            head.data = data;
-            head.link = null;
-            NextNodo2.link = head;
-            NextNodo2 = head;
-            System.out.println("Otro 1, No 2");
-            opcion = Scan.nextInt();
-        }while (opcion>0 && opcion<2);*/
+        
         newNodo = new nodos();
         for (nodos i = head; i != null; i = i.link){
             for (nodos j = head; j != null; j = j.link) {
