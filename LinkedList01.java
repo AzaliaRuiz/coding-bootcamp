@@ -26,6 +26,7 @@ public class LinkedList01 {
             head.data = data;
             head.link = nextNodo;
         }
+            
         else{
             newNodo = head;
             while (newNodo.link != null){
