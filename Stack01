@@ -1,0 +1,112 @@
+import java.util.*;
+
+class Stacks{
+    int data;
+    Stacks link;
+
+    public Stacks lastNodo(Stacks nodo){
+        Stacks last;
+        last = nodo;
+        while (nodo.link != null){
+            nodo = nodo.link;
+            last = nodo;
+        }
+        return last;
+    }
+}
+public class Stack01 {
+    public static Stacks head = null;
+    public static Stacks nextNodo = null;
+    public static Stack auxiliar = new Stack();
+    public static int aux = 0;
+
+    public static void InsertarNodoStack(){
+        Scanner Scan = new Scanner(System.in);
+        int data;
+        Stacks newNodo;
+
+            if (head == null){
+                head = new Stacks();
+                System.out.println("Introduzca el dato del nodo");
+                data = Scan.nextInt();
+                head.data = data;
+                head.link = nextNodo;
+
+                aux = head.data;
+                auxiliar.push(aux);
+            }
+            else{
+                nextNodo = new Stacks();
+                newNodo = head;
+                newNodo = newNodo.lastNodo(newNodo);
+
+                System.out.println("Introduzca el dato del nodo");
+                data = Scan.nextInt();
+                nextNodo.data = data;
+                newNodo.link = nextNodo;
+                nextNodo.link = null;
+                if (aux > nextNodo.data) {
+                    aux =  nextNodo.data;
+                    auxiliar.push(aux);
+                }
+            }
+    }
+
+    public static void EliminarUltimoNodo(){
+        int data = 0;
+        Stacks lastNodo = new Stacks();
+        if(head.link == null){
+            head = null;
+        }
+        else{
+            nextNodo = head;
+        }
+
+        while(nextNodo.link!=null){
+            lastNodo = nextNodo;
+            nextNodo = nextNodo.link;
+        }
+        data = (int) auxiliar.peek();
+        if (lastNodo.data == data){
+            auxiliar.pop();
+        }
+        lastNodo.link = null;
+    }
+
+    public static void main(String [] args){
+        Scanner Scan = new Scanner(System.in);
+        int op = 0;
+
+        System.out.println("8. Implementar un Stack con las operaciones de push,pop, peek y getMin(valor más chico de la pila)");
+
+        do{
+            System.out.println("1. Push");
+            System.out.println("2. Pop");
+            System.out.println("3. Peek");
+            System.out.println("4. GetMin");
+            System.out.println("0. Salir");
+            op = Scan.nextInt();
+            switch (op){
+                case 1:
+                    InsertarNodoStack();
+                    break;
+                case 2:
+                    EliminarUltimoNodo();
+                    break;
+
+                case 3:
+                    Stacks lastNodo = head;
+                    lastNodo = lastNodo.lastNodo(lastNodo);
+                    System.out.println("Ultimo elemento insertado: "+lastNodo.data);
+                    break;
+
+                case 4:
+                    System.out.println("Elemento mas pequeño de la pila: "+auxiliar.peek());
+                    break;
+                default:
+                    System.out.println("Bye Bye");
+                    break;
+            }
+        }while (op>0 && op<5);
+    }
+}
