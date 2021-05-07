@@ -67,7 +67,8 @@ public class Stack01 {
             nextNodo = nextNodo.link;
         }
         data = (int) auxiliar.peek();
-        if (lastNodo.data == data){
+
+        if (nextNodo.data == data){
             auxiliar.pop();
         }
         lastNodo.link = null;
@@ -88,20 +89,39 @@ public class Stack01 {
             op = Scan.nextInt();
             switch (op){
                 case 1:
-                    InsertarNodoStack();
+                        InsertarNodoStack();
                     break;
                 case 2:
-                    EliminarUltimoNodo();
+                    if(head == null){
+                        System.out.println("La pila está vacia");
+                        head = null;
+                        nextNodo = null;
+                    }
+                    else {
+                        EliminarUltimoNodo();
+                    }
                     break;
-
                 case 3:
                     Stacks lastNodo = head;
-                    lastNodo = lastNodo.lastNodo(lastNodo);
-                    System.out.println("Ultimo elemento insertado: "+lastNodo.data);
+                    if(head == null){
+                        System.out.println("La pila está vacia");
+                        head = null;
+                        nextNodo = null;
+                    }
+                    else {
+                        lastNodo = lastNodo.lastNodo(lastNodo);
+                        System.out.println("Ultimo elemento insertado: "+lastNodo.data);
+                    }
                     break;
 
                 case 4:
-                    System.out.println("Elemento mas pequeño de la pila: "+auxiliar.peek());
+
+                    if(head == null){
+                        System.out.println("La pila está vacia");
+                    }
+                    else {
+                        System.out.println("Elemento mas pequeño de la pila: "+auxiliar.peek());
+                    }
                     break;
                 default:
                     System.out.println("Bye Bye");
